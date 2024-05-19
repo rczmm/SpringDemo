@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?serverTimezone=GMT
+    username: root
+    password: root
+
+server:
+  port: 8080
+
+mybatis:
+  mapper-locations: classpath:mapper/demo/*.xml
+  type-aliases-package: com.rczmm.demo.domain
