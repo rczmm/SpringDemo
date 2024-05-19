@@ -1,8 +1,8 @@
 package com.rczmm.demo.service.impl;
 
+import com.rczmm.demo.domain.Corp;
 import com.rczmm.demo.mapper.CorpMapper;
 import com.rczmm.demo.service.ICorpService;
-import com.rczmm.demo.domain.Corp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +16,14 @@ import java.util.List;
  */
 @Service
 public class CorpServiceImpl implements ICorpService {
+
+    private final CorpMapper corpMapper;
+
     @Autowired
-    private CorpMapper corpMapper;
+    public CorpServiceImpl(CorpMapper corpMapper) {
+        this.corpMapper = corpMapper;
+    }
+
 
     /**
      * 查询部门，存储部门信息
