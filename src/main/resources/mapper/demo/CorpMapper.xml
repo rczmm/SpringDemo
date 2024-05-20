@@ -19,7 +19,7 @@
     </sql>
 
     <sql id="columnList">
-        id,pid, name, type, status, description, createTime, updateTime
+        id,pid,name,type,status,description,createTime,updateTime
     </sql>
 
     <sql id="selectCorpVo">
