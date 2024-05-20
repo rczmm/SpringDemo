@@ -64,7 +64,7 @@ public class CorpController {
      * @param corp 部门，存储部门信息
      * @return 结果
      */
-    @PutMapping("/edit")
+    @PostMapping("/edit")
     public int edit(@RequestBody Corp corp) {
         return corpService.updateCorp(corp);
     }
@@ -75,7 +75,7 @@ public class CorpController {
      * @param ids 部门，存储部门信息ID
      * @return 结果
      */
-    @DeleteMapping("/{ids}")
+    @PostMapping("/{ids}")
     public int remove(@PathVariable Long[] ids) {
         return corpService.deleteCorpByIds(ids);
     }

@@ -65,7 +65,7 @@ public class UserController {
      * @param user 用户，存储用户信息
      * @return 结果
      */
-    @PutMapping("/edit")
+    @PostMapping("/edit")
     public int edit(@RequestBody User user) {
         return userService.updateUser(user);
     }
@@ -76,7 +76,7 @@ public class UserController {
      * @param ids 用户，存储用户信息ID
      * @return 结果
      */
-    @DeleteMapping("/{ids}")
+    @PostMapping("/{ids}")
     public int remove(@PathVariable Long[] ids) {
         return userService.deleteUserByIds(ids);
     }
