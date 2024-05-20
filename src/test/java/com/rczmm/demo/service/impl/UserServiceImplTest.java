@@ -16,27 +16,52 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * 1. @ExtendWith(MockitoExtension.class) 指定扩展类
+ *
+ * @author rczmm
+ * @date 2024/05/20
+ */
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 
+    /**
+     * 1. @Mock: 模拟对象
+     */
     @Mock
     private UserMapper userMapper;
 
+    /**
+     * 1. @InjectMocks: 注入模拟对象
+     */
     @InjectMocks
     private UserServiceImpl userService;
 
+    /**
+     * 1. @BeforeEach: 每个测试方法执行前执行
+     */
     @BeforeEach
     void setUp() {
         System.out.println("开始测试");
         userService = new UserServiceImpl(userMapper);
     }
 
+    /**
+     * 1. @AfterEach: 每个测试方法执行后执行
+     */
     @AfterEach
     void tearDown() {
         System.out.println("测试结束");
         userService = null;
     }
 
+    /**
+     * 1. @Transactional(readOnly = true): 只读事务
+     * 2. @Test: 测试方法
+     * 3. verify: 验证方法是否被调用
+     * 4. when: 模拟方法返回值
+     * 5. Assertions.assertEquals: 断言
+     */
     @Transactional(readOnly = true)
     @Test
     void selectUserById() {
@@ -45,6 +70,13 @@ class UserServiceImplTest {
         verify(userMapper).selectUserById(id);
     }
 
+    /**
+     * 1. @Transactional(readOnly = true): 只读事务
+     * 2. @Test: 测试方法
+     * 3. verify: 验证方法是否被调用
+     * 4. when: 模拟方法返回值
+     * 5. Assertions.assertEquals: 断言
+     */
     @Transactional(readOnly = true)
     @Test
     void selectUserList() {
@@ -53,6 +85,14 @@ class UserServiceImplTest {
         verify(userMapper).selectUserList(user);
     }
 
+    /**
+     * 1. @Transactional: 事务
+     * 2. @Rollback: 回滚
+     * 3. @Test: 测试方法
+     * 4. verify: 验证方法是否被调用
+     * 5. when: 模拟方法返回值
+     * 6. Assertions.assertEquals: 断言
+     */
     @Transactional
     @Rollback
     @Test
@@ -70,6 +110,14 @@ class UserServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    /**
+     * 1. @Transactional: 事务
+     * 2. @Rollback: 回滚
+     * 3. @Test: 测试方法
+     * 4. verify: 验证方法是否被调用
+     * 5. when: 模拟方法返回值
+     * 6. Assertions.assertEquals: 断言
+     */
     @Transactional
     @Rollback
     @Test
@@ -87,6 +135,14 @@ class UserServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    /**
+     * 1. @Transactional: 事务
+     * 2. @Rollback: 回滚
+     * 3. @Test: 测试方法
+     * 4. verify: 验证方法是否被调用
+     * 5. when: 模拟方法返回值
+     * 6. Assertions.assertEquals: 断言
+     */
     @Transactional
     @Rollback
     @Test
@@ -98,6 +154,14 @@ class UserServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    /**
+     * 1. @Transactional: 事务
+     * 2. @Rollback: 回滚
+     * 3. @Test: 测试方法
+     * 4. verify: 验证方法是否被调用
+     * 5. when: 模拟方法返回值
+     * 6. Assertions.assertEquals: 断言
+     */
     @Transactional
     @Rollback
     @Test

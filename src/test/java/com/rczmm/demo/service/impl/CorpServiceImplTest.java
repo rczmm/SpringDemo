@@ -16,29 +16,54 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * 1. @ExtendWith(MockitoExtension.class) 指定扩展类
+ *
+ * @author rczmm
+ * @date 2024/05/20
+ */
 @ExtendWith(MockitoExtension.class)
 class CorpServiceImplTest {
 
+    /**
+     * 1. @Mock 指定要模拟的类
+     */
     @Mock
     private CorpMapper corpMapper;
 
 
+    /**
+     * 1. @InjectMocks 指定要测试的类
+     */
     @InjectMocks
     private CorpServiceImpl corpService;
 
 
+    /**
+     * 1. @BeforeEach 指定测试前的方法
+     * 2. 在这里初始化要测试的类
+     */
     @BeforeEach
     void setUp() {
         System.out.println("开始测试");
         corpService = new CorpServiceImpl(corpMapper);
     }
 
+    /**
+     * 1. @AfterEach 指定测试后的方法
+     * 2. 在这里清理要测试的类
+     */
     @AfterEach
     void tearDown() {
         System.out.println("测试结束");
         corpService = null;
     }
 
+    /**
+     * 1. @Transactional(readOnly = true): 只读事务
+     * 2. @Test: 测试方法
+     * 3. verify: 验证方法是否被调用
+     */
     @Transactional(readOnly = true)
     @Test
     void selectCorpById() {
@@ -47,6 +72,11 @@ class CorpServiceImplTest {
         verify(corpMapper).selectCorpById(id);
     }
 
+    /**
+     * 1. @Transactional(readOnly = true): 只读事务
+     * 2. @Test: 测试方法
+     * 3. verify: 验证方法是否被调用
+     */
     @Transactional(readOnly = true)
     @Test
     void selectCorpList() {
@@ -55,6 +85,13 @@ class CorpServiceImplTest {
         verify(corpMapper).selectCorpList(corp);
     }
 
+    /**
+     * 1. @Transactional(readOnly = true): 只读事务
+     * 2. @Test: 测试方法
+     * 3. verify: 验证方法是否被调用
+     * 4. when: 模拟方法返回值
+     * 5. Assertions.assertEquals: 断言
+     */
     @Transactional
     @Rollback
     @Test
@@ -73,6 +110,13 @@ class CorpServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    /**
+     * 1. @Transactional(readOnly = true): 只读事务
+     * 2. @Test: 测试方法
+     * 3. verify: 验证方法是否被调用
+     * 4. when: 模拟方法返回值
+     * 5. Assertions.assertEquals: 断言
+     */
     @Transactional
     @Rollback
     @Test
@@ -92,6 +136,13 @@ class CorpServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    /**
+     * 1. @Transactional(readOnly = true): 只读事务
+     * 2. @Test: 测试方法
+     * 3. verify: 验证方法是否被调用
+     * 4. when: 模拟方法返回值
+     * 5. Assertions.assertEquals: 断言
+     */
     @Transactional
     @Rollback
     @Test
@@ -103,6 +154,13 @@ class CorpServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    /**
+     * 1. @Transactional(readOnly = true): 只读事务
+     * 2. @Test: 测试方法
+     * 3. verify: 验证方法是否被调用
+     * 4. when: 模拟方法返回值
+     * 5. Assertions.assertEquals: 断言
+     */
     @Transactional
     @Rollback
     @Test
