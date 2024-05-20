@@ -1,6 +1,7 @@
 package com.rczmm.demo.mapper;
 
 import com.rczmm.demo.domain.Log;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 日志，存储日志信息Mapper接口
@@ -8,6 +9,7 @@ import com.rczmm.demo.domain.Log;
  * @author rczmm
  * @date 2020/12/14
  */
+@Mapper
 public interface LogMapper {
 
     /**

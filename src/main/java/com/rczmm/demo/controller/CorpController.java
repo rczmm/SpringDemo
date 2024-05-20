@@ -1,5 +1,6 @@
 package com.rczmm.demo.controller;
 
+import com.rczmm.demo.annotation.OperationLogAnnotation;
 import com.rczmm.demo.domain.Corp;
 import com.rczmm.demo.domain.TreeNode;
 import com.rczmm.demo.service.ICorpService;
@@ -32,6 +33,7 @@ public class CorpController {
      * @param corp 部门对象
      * @return 部门，存储部门信息集合
      */
+    @OperationLogAnnotation(operationModule = "corp", operationType = "list", operationDesc = "查询部门，存储部门信息列表")
     @GetMapping("/list")
     public Map<Long, TreeNode<Corp>> list(Corp corp) {
         return corpService.selectCorpList(corp);
@@ -43,6 +45,7 @@ public class CorpController {
      * @param id 部门，存储部门信息ID
      * @return 部门，存储部门信息
      */
+    @OperationLogAnnotation(operationModule = "corp", operationType = "get", operationDesc = "查询部门，存储部门信息详细")
     @GetMapping(value = "/{id}")
     public Corp getInfo(@PathVariable("id") Long id) {
         return corpService.selectCorpById(id);
@@ -54,6 +57,7 @@ public class CorpController {
      * @param corp 部门，存储部门信息
      * @return 结果
      */
+    @OperationLogAnnotation(operationModule = "corp", operationType = "add", operationDesc = "新增部门，存储部门信息")
     @PostMapping("/add")
     public int add(@RequestBody Corp corp) {
         return corpService.insertCorp(corp);
@@ -65,6 +69,7 @@ public class CorpController {
      * @param corp 部门，存储部门信息
      * @return 结果
      */
+    @OperationLogAnnotation(operationModule = "corp", operationType = "edit", operationDesc = "修改部门，存储部门信息")
     @PostMapping("/edit")
     public int edit(@RequestBody Corp corp) {
         return corpService.updateCorp(corp);
@@ -76,6 +81,7 @@ public class CorpController {
      * @param ids 部门，存储部门信息ID
      * @return 结果
      */
+    @OperationLogAnnotation(operationModule = "corp", operationType = "remove", operationDesc = "删除部门，存储部门信息")
     @PostMapping("/{ids}")
     public int remove(@PathVariable Long[] ids) {
         return corpService.deleteCorpByIds(ids);
