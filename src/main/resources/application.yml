@@ -6,6 +6,10 @@ spring:
     url: jdbc:mysql://localhost:3306/demo?serverTimezone=GMT
     username: root
     password: root
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
 
 server:
   port: 8080
@@ -18,6 +22,7 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /index.html
+
 
 
 

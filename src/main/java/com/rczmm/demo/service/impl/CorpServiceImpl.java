@@ -7,6 +7,9 @@ import com.rczmm.demo.service.ICorpService;
 import com.rczmm.demo.util.TreeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +39,7 @@ public class CorpServiceImpl implements ICorpService {
      * @param id 部门，存储部门信息主键
      * @return 部门，存储部门信息
      */
+    @Cacheable(cacheNames = "corp", key = "#id")
     @Override
     public Corp selectCorpById(Long id) {
         return corpMapper.selectCorpById(id);
@@ -47,10 +51,10 @@ public class CorpServiceImpl implements ICorpService {
      * @param corp 部门，存储部门信息
      * @return 部门，存储部门信息
      */
+    @Cacheable(cacheNames = "corp", key = "'selectCorpList:' + #corp.toString()")
     @Override
     public Map<Long, TreeNode<Corp>> selectCorpList(Corp corp) {
         List<Corp> corpList = corpMapper.selectCorpList(corp);
-        log.info("TreeUtil.buildTree(corpList):{}", TreeUtil.buildTree(corpList));
         return TreeUtil.buildTree(corpList);
     }
 
@@ -60,6 +64,7 @@ public class CorpServiceImpl implements ICorpService {
      * @param corp 部门，存储部门信息
      * @return 结果
      */
+    @CachePut(cacheNames = "corp", key = "#corp.id")
     @Override
     public int insertCorp(Corp corp) {
         return corpMapper.insertCorp(corp);
@@ -71,6 +76,7 @@ public class CorpServiceImpl implements ICorpService {
      * @param corp 部门，存储部门信息
      * @return 结果
      */
+    @CachePut(cacheNames = "corp", key = "#corp.id")
     @Override
     public int updateCorp(Corp corp) {
         return corpMapper.updateCorp(corp);
@@ -82,6 +88,7 @@ public class CorpServiceImpl implements ICorpService {
      * @param ids 需要删除的部门，存储部门信息主键
      * @return 结果
      */
+    @CacheEvict(cacheNames = "corp", allEntries = true)
     @Override
     public int deleteCorpByIds(Long[] ids) {
         return corpMapper.deleteCorpByIds(ids);
@@ -93,6 +100,7 @@ public class CorpServiceImpl implements ICorpService {
      * @param id 部门，存储部门信息主键
      * @return 结果
      */
+    @CacheEvict(cacheNames = "corp", key = "#id")
     @Override
     public int deleteCorpById(Long id) {
         return corpMapper.deleteCorpById(id);

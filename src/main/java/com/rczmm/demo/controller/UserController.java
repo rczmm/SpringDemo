@@ -17,7 +17,7 @@ import java.util.List;
  * @author rczmm
  * @date 2024-05-13
  */
-@Tag(name = "user", description = "用户模块")
+@Tag(name = "user", description = "")
 @RestController
 @RequestMapping("/demo/user")
 public class UserController {
