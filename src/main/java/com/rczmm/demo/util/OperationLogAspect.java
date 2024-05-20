@@ -17,6 +17,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
@@ -33,6 +34,8 @@ import java.util.Objects;
 public class OperationLogAspect {
 
     private final LogMapper logMapper;
+
+    private static SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     public OperationLogAspect(LogMapper logMapper) {
@@ -74,7 +77,7 @@ public class OperationLogAspect {
                 log.setDescription(annotation.operationDesc());
             }
 
-            log.setOperation_time(Timestamp.valueOf(String.valueOf(new Date())));
+            log.setOperationTime(Timestamp.valueOf(SDF.format(new Date())));
 
 
             log.setResult(map.get("message"));

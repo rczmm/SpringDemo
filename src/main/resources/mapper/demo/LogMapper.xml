@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rczmm.demo.mapper.LogMapper">
+    <resultMap id="LogResult" type="com.rczmm.demo.domain.Log">
+        <result property="logId" column="id"/>
+        <result property="ip" column="ip"/>
+        <result property="type" column="type"/>
+        <result property="description" column="description"/>
+        <result property="model" column="model"/>
+        <result property="operationTime" column="operation_time"/>
+        <result property="result" column="result"/>
+
+    </resultMap>
+
+    <sql id="tableName">
+        log
+    </sql>
+
+    <sql id="columnList">
+        id,ip,type,description,model,operation_time,result
+    </sql>
+
+    <select id="selectLogById" parameterType="Integer" resultMap="LogResult">
+        SELECT
+        <include refid="columnList"/>
+        FROM
+        <include refid="tableName"/>
+        WHERE id=#{id}
+    </select>
+
+    <insert id="insertLog" parameterType="Log">
+        INSERT INTO
+        <include refid="tableName"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="logId != null">id,</if>
+            <if test="ip != null">ip,</if>
+            <if test="type != null and type != ''">type,</if>
+            <if test="description != null and description != ''">description,</if>
+            <if test="model != null and model != ''">model,</if>
+            <if test="operationTime  != null">operation_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="logId != null">#{logId},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="description != null and description != ''">#{description},</if>
+            <if test="model != null and model != ''">#{model},</if>
+            <if test="operationTime != null">#{operationTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateLog" parameterType="Log">
+        UPDATE
+        <include refid="tableName"/>
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="ip != null">#{ip},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="description != null and description != ''">#{description},</if>
+            <if test="model != null and model != ''">#{model},</if>
+            <if test="operationTime != null">#{operationTime},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteLogById">
+        DELETE
+        FROM
+        <include refid="tableName"/>
+        WHERE id = #{id}
+    </delete>
+
+
+</mapper>

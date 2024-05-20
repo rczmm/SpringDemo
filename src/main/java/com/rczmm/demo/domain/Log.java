@@ -14,7 +14,7 @@ public class Log {
 
     private String model;
 
-    private Date operation_time;
+    private Date operationTime;
 
     private String result;
 
@@ -58,12 +58,12 @@ public class Log {
         this.model = model;
     }
 
-    public Date getOperation_time() {
-        return operation_time;
+    public Date getOperationTime() {
+        return operationTime;
     }
 
-    public void setOperation_time(Date operation_time) {
-        this.operation_time = operation_time;
+    public void setOperationTime(Date operationTime) {
+        this.operationTime = operationTime;
     }
 
     public String getResult() {
