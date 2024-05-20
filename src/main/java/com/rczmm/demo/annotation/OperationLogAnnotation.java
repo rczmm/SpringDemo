@@ -7,7 +7,7 @@ import java.lang.annotation.*;
  * 自定义操作日志注解
  *
  * @author rczmm
- * @date 2019/11/11 14:45
+ * @date 2024/05/20 14:45
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
