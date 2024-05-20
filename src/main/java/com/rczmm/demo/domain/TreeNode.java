@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2024/05/20 14:14
  */
 @Data
-public class TreeNode<T> {
+public class TreeNode<T> extends BaseDO {
     private T data;
     private List<TreeNode<T>> children;
 
