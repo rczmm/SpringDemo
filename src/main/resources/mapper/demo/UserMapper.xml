@@ -8,7 +8,7 @@
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="account" column="account"/>
-        <result property="corpid" column="corpid"/>
+        <result property="corpId" column="corpId"/>
         <result property="createTime" column="createTime"/>
         <result property="updateTime" column="updateTime"/>
     </resultMap>
@@ -33,7 +33,7 @@
         <where>
             <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
             <if test="account != null  and account != ''">and account = #{account}</if>
-            <if test="corpid != null ">and corpid = #{corpid}</if>
+            <if test="corpId != null ">and corpid = #{corpid}</if>
             <if test="createTime != null ">and createTime = #{createTime}</if>
             <if test="updateTime != null ">and updateTime = #{updateTime}</if>
         </where>
@@ -51,7 +51,7 @@
             <if test="id != null">id,</if>
             <if test="name != null">name,</if>
             <if test="account != null">account,</if>
-            <if test="corpid != null">corpid,</if>
+            <if test="corpId != null">corpid,</if>
             <if test="createTime != null">createTime,</if>
             <if test="updateTime != null">updateTime,</if>
         </trim>
@@ -59,7 +59,7 @@
             <if test="id != null">#{id},</if>
             <if test="name != null">#{name},</if>
             <if test="account != null">#{account},</if>
-            <if test="corpid != null">#{corpid},</if>
+            <if test="corpId != null">#{corpid},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateTime != null">#{updateTime},</if>
         </trim>
@@ -71,7 +71,7 @@
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
             <if test="account != null">account = #{account},</if>
-            <if test="corpid != null">corpid = #{corpid},</if>
+            <if test="corpId != null">corpid = #{corpid},</if>
             <if test="createTime != null">createTime = #{createTime},</if>
             <if test="updateTime != null">updateTime = #{updateTime},</if>
         </trim>
