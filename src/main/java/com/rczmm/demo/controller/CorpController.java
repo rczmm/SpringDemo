@@ -4,6 +4,8 @@ import com.rczmm.demo.annotation.OperationLogAnnotation;
 import com.rczmm.demo.domain.Corp;
 import com.rczmm.demo.domain.TreeNode;
 import com.rczmm.demo.service.ICorpService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,7 @@ import java.util.Map;
  * @author rczmm
  * @date 2024-05-13
  */
+@Tag(name = "corp", description = "部门模块")
 @RestController
 @RequestMapping("/demo/corp")
 public class CorpController {
@@ -33,6 +36,7 @@ public class CorpController {
      * @param corp 部门对象
      * @return 部门，存储部门信息集合
      */
+    @Operation(summary = "查询部门，存储部门信息列表", description = "查询部门，存储部门信息列表")
     @OperationLogAnnotation(operationModule = "corp", operationType = "list", operationDesc = "查询部门，存储部门信息列表")
     @GetMapping("/list")
     public Map<Long, TreeNode<Corp>> list(Corp corp) {
@@ -45,6 +49,7 @@ public class CorpController {
      * @param id 部门，存储部门信息ID
      * @return 部门，存储部门信息
      */
+    @Operation(summary = "查询部门，存储部门信息详细", description = "查询部门，存储部门信息详细")
     @OperationLogAnnotation(operationModule = "corp", operationType = "get", operationDesc = "查询部门，存储部门信息详细")
     @GetMapping(value = "/{id}")
     public Corp getInfo(@PathVariable("id") Long id) {
@@ -57,6 +62,7 @@ public class CorpController {
      * @param corp 部门，存储部门信息
      * @return 结果
      */
+    @Operation(summary = "新增部门，存储部门信息", description = "新增部门，存储部门信息")
     @OperationLogAnnotation(operationModule = "corp", operationType = "add", operationDesc = "新增部门，存储部门信息")
     @PostMapping("/add")
     public int add(@RequestBody Corp corp) {
@@ -69,6 +75,7 @@ public class CorpController {
      * @param corp 部门，存储部门信息
      * @return 结果
      */
+    @Operation(summary = "修改部门，存储部门信息", description = "修改部门，存储部门信息")
     @OperationLogAnnotation(operationModule = "corp", operationType = "edit", operationDesc = "修改部门，存储部门信息")
     @PostMapping("/edit")
     public int edit(@RequestBody Corp corp) {
@@ -81,6 +88,7 @@ public class CorpController {
      * @param ids 部门，存储部门信息ID
      * @return 结果
      */
+    @Operation(summary = "删除部门，存储部门信息", description = "删除部门，存储部门信息")
     @OperationLogAnnotation(operationModule = "corp", operationType = "remove", operationDesc = "删除部门，存储部门信息")
     @PostMapping("/{ids}")
     public int remove(@PathVariable Long[] ids) {
