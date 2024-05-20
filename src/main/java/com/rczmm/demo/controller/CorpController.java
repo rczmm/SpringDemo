@@ -1,11 +1,12 @@
 package com.rczmm.demo.controller;
 
 import com.rczmm.demo.domain.Corp;
+import com.rczmm.demo.domain.TreeNode;
 import com.rczmm.demo.service.ICorpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -32,7 +33,7 @@ public class CorpController {
      * @return 部门，存储部门信息集合
      */
     @GetMapping("/list")
-    public List<Corp> list(Corp corp) {
+    public Map<Long, TreeNode<Corp>> list(Corp corp) {
         return corpService.selectCorpList(corp);
     }
 

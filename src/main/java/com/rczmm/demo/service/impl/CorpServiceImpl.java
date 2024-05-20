@@ -1,12 +1,16 @@
 package com.rczmm.demo.service.impl;
 
 import com.rczmm.demo.domain.Corp;
+import com.rczmm.demo.domain.TreeNode;
 import com.rczmm.demo.mapper.CorpMapper;
 import com.rczmm.demo.service.ICorpService;
+import com.rczmm.demo.util.TreeUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 部门，存储部门信息Service业务层处理
@@ -14,6 +18,7 @@ import java.util.List;
  * @author rczmm
  * @date 2024-05-13
  */
+@Slf4j
 @Service
 public class CorpServiceImpl implements ICorpService {
 
@@ -43,8 +48,10 @@ public class CorpServiceImpl implements ICorpService {
      * @return 部门，存储部门信息
      */
     @Override
-    public List<Corp> selectCorpList(Corp corp) {
-        return corpMapper.selectCorpList(corp);
+    public Map<Long, TreeNode<Corp>> selectCorpList(Corp corp) {
+        List<Corp> corpList = corpMapper.selectCorpList(corp);
+        log.info("TreeUtil.buildTree(corpList):{}", TreeUtil.buildTree(corpList));
+        return TreeUtil.buildTree(corpList);
     }
 
     /**
