@@ -53,6 +53,7 @@ class UserServiceImplTest {
         verify(userMapper).selectUserList(user);
     }
 
+    @Transactional
     @Rollback
     @Test
     void insertUser() {
@@ -69,6 +70,7 @@ class UserServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    @Transactional
     @Rollback
     @Test
     void updateUser() {
@@ -85,6 +87,7 @@ class UserServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    @Transactional
     @Rollback
     @Test
     void deleteUserByIds() {
@@ -95,6 +98,7 @@ class UserServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    @Transactional
     @Rollback
     @Test
     void deleteUserById() {

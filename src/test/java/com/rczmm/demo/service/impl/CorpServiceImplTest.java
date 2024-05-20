@@ -55,6 +55,7 @@ class CorpServiceImplTest {
         verify(corpMapper).selectCorpList(corp);
     }
 
+    @Transactional
     @Rollback
     @Test
     void insertCorp() {
@@ -72,6 +73,7 @@ class CorpServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    @Transactional
     @Rollback
     @Test
     void updateCorp() {
@@ -90,6 +92,7 @@ class CorpServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    @Transactional
     @Rollback
     @Test
     void deleteCorpByIds() {
@@ -100,6 +103,7 @@ class CorpServiceImplTest {
         Assertions.assertEquals(1, result);
     }
 
+    @Transactional
     @Rollback
     @Test
     void deleteCorpById() {
