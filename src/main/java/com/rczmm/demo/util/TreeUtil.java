@@ -23,8 +23,8 @@ public class TreeUtil {
     public static Map<Long, TreeNode<Corp>> buildTree(List<Corp> list) {
 
         /*
-          1. Check if the list is empty
-          2. If the list is empty, return null
+         1. Check if the list is empty
+         2. If the list is empty, return null
          */
         if (Objects.isNull(list) || list.isEmpty()) {
             return null;

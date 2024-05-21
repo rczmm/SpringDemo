@@ -27,7 +27,7 @@ import java.util.Objects;
  * 操作日志切面处理类
  *
  * @author rczmm
- * @date 2018-05-24
+ * @date 2024-05-21
  */
 @Aspect
 @Component
@@ -42,7 +42,7 @@ public class OperationLogAspect {
         this.logMapper = logMapper;
     }
 
-    /*
+    /**
      * 设置操作日志切入点
      */
     @Pointcut("@annotation(com.rczmm.demo.annotation.OperationLogAnnotation)")

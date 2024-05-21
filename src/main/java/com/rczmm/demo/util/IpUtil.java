@@ -6,7 +6,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-
+/**
+ * ip工具类
+ *
+ * @author rczmm
+ * @date 2024/5/21 17:27
+ */
 public class IpUtil {
     public static String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;

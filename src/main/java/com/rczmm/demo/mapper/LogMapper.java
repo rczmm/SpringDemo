@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
  * 日志，存储日志信息Mapper接口
  *
  * @author rczmm
- * @date 2020/12/14
+ * @date 2024/05/14
  */
 @Mapper
 public interface LogMapper {

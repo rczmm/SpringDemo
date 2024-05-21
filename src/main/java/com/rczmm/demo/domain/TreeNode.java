@@ -1,7 +1,5 @@
 package com.rczmm.demo.domain;
 
-import lombok.Data;
-
 import java.util.List;
 
 
@@ -13,7 +11,15 @@ import java.util.List;
  * @date 2024/05/20 14:14
  */
 public class TreeNode<T> extends BaseDO {
+
+    /**
+     * 数据
+     */
     private T data;
+
+    /**
+     * 子节点
+     */
     private List<TreeNode<T>> children;
 
     public T getData() {

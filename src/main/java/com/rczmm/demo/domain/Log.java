@@ -2,20 +2,47 @@ package com.rczmm.demo.domain;
 
 import java.util.Date;
 
+/**
+ * 日志类
+ *
+ * @author rczmm
+ * @date 2024/05/21 10:45
+ */
 public class Log {
 
+    /**
+     * 日志id
+     */
     private String logId;
 
+    /**
+     * ip
+     */
     private String ip;
 
+    /**
+     * 日志类型
+     */
     private String type;
 
+    /**
+     * 日志描述
+     */
     private String description;
 
+    /**
+     * 日志模型
+     */
     private String model;
 
+    /**
+     * 日志操作时间
+     */
     private Date operationTime;
 
+    /**
+     * 日志结果
+     */
     private String result;
 
     public String getLogId() {
