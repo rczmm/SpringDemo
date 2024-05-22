@@ -3,7 +3,11 @@ package com.rczmm.demo.service.impl;
 import com.rczmm.demo.domain.User;
 import com.rczmm.demo.mapper.UserMapper;
 import com.rczmm.demo.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +18,7 @@ import java.util.List;
  * @author rczmm
  * @date 2024-05-13
  */
+@Slf4j
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -42,6 +47,7 @@ public class UserServiceImpl implements IUserService {
      * @param user 用户，存储用户信息
      * @return 用户，存储用户信息
      */
+    @Cacheable(value = "user", key = "#user.id")
     @Override
     public List<User> selectUserList(User user) {
         return userMapper.selectUserList(user);
@@ -53,6 +59,7 @@ public class UserServiceImpl implements IUserService {
      * @param user 用户，存储用户信息
      * @return 结果
      */
+    @Cacheable(value = "user", key = "#user.id")
     @Override
     public int insertUser(User user) {
         return userMapper.insertUser(user);
@@ -64,6 +71,7 @@ public class UserServiceImpl implements IUserService {
      * @param user 用户，存储用户信息
      * @return 结果
      */
+    @CachePut(value = "user", key = "#user.id")
     @Override
     public int updateUser(User user) {
         return userMapper.updateUser(user);
@@ -75,6 +83,7 @@ public class UserServiceImpl implements IUserService {
      * @param ids 需要删除的用户，存储用户信息主键
      * @return 结果
      */
+    @CacheEvict(value = "user", allEntries = true)
     @Override
     public int deleteUserByIds(Long[] ids) {
         return userMapper.deleteUserByIds(ids);
@@ -86,6 +95,7 @@ public class UserServiceImpl implements IUserService {
      * @param id 用户，存储用户信息主键
      * @return 结果
      */
+    @CacheEvict(value = "user", key = "#id")
     @Override
     public int deleteUserById(Long id) {
         return userMapper.deleteUserById(id);

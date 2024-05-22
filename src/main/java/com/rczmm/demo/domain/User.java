@@ -7,7 +7,7 @@ package com.rczmm.demo.domain;
  * @author rczmm
  * @date 2024-05-13
  */
-public class User extends BaseDO{
+public class User extends BaseDO {
 
     /**
      * 用户ID
@@ -29,8 +29,14 @@ public class User extends BaseDO{
      */
     private Long corpId;
 
+    /**
+     * 创建时间
+     */
     private String createTime;
 
+    /**
+     * 更新时间
+     */
     private String updateTime;
 
     public String getCreateTime() {

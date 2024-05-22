@@ -14,17 +14,17 @@ import java.lang.annotation.*;
 @Documented
 public @interface OperationLogAnnotation {
 
-    /*
+    /**
      * 操作模块
      */
     String operationModule() default "";
 
-    /*
+    /**
      * 操作描述
      */
     String operationDesc() default "";
 
-    /*
+    /**
      * 操作类型
      */
     String operationType() default "";
