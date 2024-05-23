@@ -2,6 +2,7 @@ package com.rczmm.demo.mapper;
 
 import com.rczmm.demo.domain.Corp;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface CorpMapper {
      * @param id 部门，存储部门信息主键
      * @return 部门，存储部门信息
      */
-    Corp selectCorpById(Long id);
+    Corp selectCorpById(@Param("id") Long id);
 
     /**
      * 查询部门，存储部门信息列表
@@ -27,7 +28,7 @@ public interface CorpMapper {
      * @param corp 部门，存储部门信息
      * @return 部门，存储部门信息集合
      */
-    List<Corp> selectCorpList(Corp corp);
+    List<Corp> selectCorpList(@Param("corp") Corp corp);
 
     /**
      * 新增部门，存储部门信息
@@ -35,7 +36,7 @@ public interface CorpMapper {
      * @param corp 部门，存储部门信息
      * @return 结果
      */
-    int insertCorp(Corp corp);
+    int insertCorp(@Param("corp") Corp corp);
 
     /**
      * 修改部门，存储部门信息
@@ -43,7 +44,7 @@ public interface CorpMapper {
      * @param corp 部门，存储部门信息
      * @return 结果
      */
-    int updateCorp(Corp corp);
+    int updateCorp(@Param("corp") Corp corp);
 
     /**
      * 删除部门，存储部门信息
@@ -51,7 +52,7 @@ public interface CorpMapper {
      * @param id 部门，存储部门信息主键
      * @return 结果
      */
-    int deleteCorpById(Long id);
+    int deleteCorpById(@Param("id") Long id);
 
     /**
      * 批量删除部门，存储部门信息
@@ -59,5 +60,5 @@ public interface CorpMapper {
      * @param ids 需要删除的数据主键集合
      * @return 结果
      */
-    int deleteCorpByIds(Long[] ids);
+    int deleteCorpByIds(@Param("ids") Long[] ids);
 }

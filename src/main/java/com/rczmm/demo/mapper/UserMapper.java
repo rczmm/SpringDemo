@@ -2,6 +2,7 @@ package com.rczmm.demo.mapper;
 
 import com.rczmm.demo.domain.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface UserMapper {
      * @param id 用户，存储用户信息主键
      * @return 用户，存储用户信息
      */
-    User selectUserById(Long id);
+    User selectUserById(@Param("id") Long id);
 
     /**
      * 查询用户，存储用户信息列表
@@ -27,7 +28,7 @@ public interface UserMapper {
      * @param user 用户，存储用户信息
      * @return 用户，存储用户信息集合
      */
-    List<User> selectUserList(User user);
+    List<User> selectUserList(@Param("user") User user);
 
     /**
      * 新增用户，存储用户信息
@@ -35,7 +36,7 @@ public interface UserMapper {
      * @param user 用户，存储用户信息
      * @return 结果
      */
-    int insertUser(User user);
+    int insertUser(@Param("user") User user);
 
     /**
      * 修改用户，存储用户信息
@@ -43,7 +44,7 @@ public interface UserMapper {
      * @param user 用户，存储用户信息
      * @return 结果
      */
-    int updateUser(User user);
+    int updateUser(@Param("user") User user);
 
     /**
      * 删除用户，存储用户信息
@@ -51,7 +52,7 @@ public interface UserMapper {
      * @param id 用户，存储用户信息主键
      * @return 结果
      */
-    int deleteUserById(Long id);
+    int deleteUserById(@Param("id") Long id);
 
     /**
      * 批量删除用户，存储用户信息
@@ -59,5 +60,5 @@ public interface UserMapper {
      * @param ids 需要删除的数据主键集合
      * @return 结果
      */
-    int deleteUserByIds(Long[] ids);
+    int deleteUserByIds(@Param("ids") Long[] ids);
 }

@@ -2,6 +2,7 @@ package com.rczmm.demo.mapper;
 
 import com.rczmm.demo.domain.Log;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 日志，存储日志信息Mapper接口
@@ -18,7 +19,7 @@ public interface LogMapper {
      * @param id id
      * @return Log
      */
-    Log selectLogById(Integer id);
+    Log selectLogById(@Param("id") Integer id);
 
 
     /**
@@ -27,7 +28,7 @@ public interface LogMapper {
      * @param log 日志
      * @return 结果
      */
-    int insertLog(Log log);
+    int insertLog(@Param("log") Log log);
 
 
     /**
@@ -36,7 +37,7 @@ public interface LogMapper {
      * @param log 日志
      * @return 结果
      */
-    int updateLog(Log log);
+    int updateLog(@Param("log") Log log);
 
 
     /**
@@ -45,5 +46,5 @@ public interface LogMapper {
      * @param id id
      * @return 结果
      */
-    int deleteLogById(Integer id);
+    int deleteLogById(@Param("id") Integer id);
 }

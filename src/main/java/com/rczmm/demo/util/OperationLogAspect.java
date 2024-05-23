@@ -5,6 +5,7 @@ import com.rczmm.demo.annotation.OperationLogAnnotation;
 import com.rczmm.demo.domain.Log;
 import com.rczmm.demo.mapper.LogMapper;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,8 +20,8 @@ import java.lang.reflect.Method;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 
 /**
@@ -29,13 +30,14 @@ import java.util.Objects;
  * @author rczmm
  * @date 2024-05-21
  */
+@Slf4j
 @Aspect
 @Component
 public class OperationLogAspect {
 
     private final LogMapper logMapper;
 
-    private static SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     public OperationLogAspect(LogMapper logMapper) {
@@ -49,9 +51,7 @@ public class OperationLogAspect {
     public void operationLogPointCut() {
     }
 
-    @AfterReturning(
-            returning = "result", value = "operationLogPointCut()"
-    )
+    @AfterReturning(returning = "result", value = "operationLogPointCut()")
     public void saveOperationLog(JoinPoint joinPoint, Object result) throws Throwable {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         Log log = new Log();
@@ -59,31 +59,19 @@ public class OperationLogAspect {
             HttpServletRequest request = (HttpServletRequest) requestAttributes.resolveReference(RequestAttributes.REFERENCE_REQUEST);
             log.setIp(IpUtil.getIpAddr(request));
         }
-
         try {
-
-            Map<String, String> map = (Map<String, String>) result;
-
-
             MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-
             Method method = signature.getMethod();
-
             OperationLogAnnotation annotation = method.getAnnotation(OperationLogAnnotation.class);
-
             if (Objects.nonNull(annotation)) {
                 log.setModel(annotation.operationModule());
                 log.setType(annotation.operationType());
                 log.setDescription(annotation.operationDesc());
             }
-
             log.setOperationTime(Timestamp.valueOf(SDF.format(new Date())));
-
-
-            log.setResult(map.get("message"));
-            logMapper.insertLog(log);
+            int insertResult = logMapper.insertLog(log);
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(getClass().getName()).info("保存操作日志失败");
         }
 
 
