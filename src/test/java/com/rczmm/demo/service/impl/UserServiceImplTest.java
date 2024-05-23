@@ -81,7 +81,9 @@ class UserServiceImplTest {
     @Test
     void selectUserList() {
         User user = new User();
-        userService.selectUserList(user);
+        int page = 1;
+        int size = 10;
+        userService.selectUserList(user, page, size);
         verify(userMapper).selectUserList(user);
     }
 

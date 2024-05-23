@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.github.pagehelper.page.PageMethod.startPage;
+
 /**
  * 用户，存储用户信息Service业务层处理
  *
@@ -49,7 +51,8 @@ public class UserServiceImpl implements IUserService {
      */
     @Cacheable(value = "user", key = "'userlist:'+ #user.toString()")
     @Override
-    public List<User> selectUserList(User user) {
+    public List<User> selectUserList(User user, int page, int limit) {
+        startPage(page, limit);
         return userMapper.selectUserList(user);
     }
 

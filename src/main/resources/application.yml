@@ -18,6 +18,12 @@ mybatis:
   mapper-locations: classpath:mapper/demo/*.xml
   type-aliases-package: com.rczmm.demo.domain
 
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
 springdoc:
   swagger-ui:
     enabled: true
