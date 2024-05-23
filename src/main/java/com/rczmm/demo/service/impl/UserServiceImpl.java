@@ -47,7 +47,7 @@ public class UserServiceImpl implements IUserService {
      * @param user 用户，存储用户信息
      * @return 用户，存储用户信息
      */
-    @Cacheable(value = "user", key = "#user.id")
+    @Cacheable(value = "user", key = "'userlist:'+ #user.toString()")
     @Override
     public List<User> selectUserList(User user) {
         return userMapper.selectUserList(user);

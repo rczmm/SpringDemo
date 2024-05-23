@@ -32,13 +32,13 @@
     <select id="selectCorpList" parameterType="Corp" resultMap="CorpResult">
         <include refid="selectCorpVo"/>
         <where>
-            <if test="pid != null ">and pid = #{pid}</if>
-            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="type != null  and type != ''">and type = #{type}</if>
-            <if test="status != null  and status != ''">and status = #{status}</if>
-            <if test="description != null  and description != ''">and description = #{description}</if>
-            <if test="createTime != null ">and createTime = #{createTime}</if>
-            <if test="updateTime != null ">and updateTime = #{updateTime}</if>
+            <if test="corp.pid != null ">and pid = #{corp.pid}</if>
+            <if test="corp.name != null  and corp.name != ''">and name like concat('%', #{corp.name}, '%')</if>
+            <if test="corp.type != null  and corp.type != ''">and type = #{corp.type}</if>
+            <if test="corp.status != null  and corp.status != ''">and status = #{corp.status}</if>
+            <if test="corp.description != null  and corp.description != ''">and description = #{corp.description}</if>
+            <if test="corp.createTime != null ">and createTime = #{corp.createTime}</if>
+            <if test="corp.updateTime != null ">and updateTime = #{corp.updateTime}</if>
         </where>
     </select>
 
@@ -51,24 +51,24 @@
         INSERT INTO
         <include refid="tableName"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">id,</if>
-            <if test="pid != null">pid,</if>
-            <if test="name != null and name != ''">name,</if>
-            <if test="type != null and type != ''">type,</if>
-            <if test="status != null and status != ''">status,</if>
-            <if test="description != null and description != ''">description,</if>
-            <if test="createTime != null">createTime,</if>
-            <if test="updateTime != null">updateTime,</if>
+            <if test="corp.id != null">id,</if>
+            <if test="corp.pid != null">pid,</if>
+            <if test="corp.name != null and corp.name != ''">name,</if>
+            <if test="corp.type != null and corp.type != ''">type,</if>
+            <if test="corp.status != null and corp.status != ''">status,</if>
+            <if test="corp.description != null and corp.description != ''">description,</if>
+            <if test="corp.createTime != null">createTime,</if>
+            <if test="corp.updateTime != null">updateTime,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">#{id},</if>
-            <if test="pid != null">#{pid},</if>
-            <if test="name != null and name != ''">#{name},</if>
-            <if test="type != null and type != ''">#{type},</if>
-            <if test="status != null and status != ''">#{status},</if>
-            <if test="description != null and description != ''">#{description},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateTime != null">#{updateTime},</if>
+            <if test="corp.id != null">#{corp.id},</if>
+            <if test="corp.pid != null">#{corp.pid},</if>
+            <if test="corp.name != null and name != ''">#{corp.name},</if>
+            <if test="corp.type != null and type != ''">#{corp.type},</if>
+            <if test="corp.status != null and status != ''">#{corp.status},</if>
+            <if test="corp.description != null and description != ''">#{corp.description},</if>
+            <if test="corp.createTime != null">#{corp.createTime},</if>
+            <if test="corp.updateTime != null">#{corp.updateTime},</if>
         </trim>
     </insert>
 
@@ -76,13 +76,13 @@
         UPDATE
         <include refid="tableName"/>
         <trim prefix="SET" suffixOverrides=",">
-            <if test="pid != null">pid = #{pid},</if>
-            <if test="name != null and name != ''">name = #{name},</if>
-            <if test="type != null and type != ''">type = #{type},</if>
-            <if test="status != null and status != ''">status = #{status},</if>
-            <if test="description != null and description != ''">description = #{description},</if>
-            <if test="createTime != null">createTime = #{createTime},</if>
-            <if test="updateTime != null">updateTime = #{updateTime},</if>
+            <if test="corp.pid != null">pid = #{corp.pid},</if>
+            <if test="corp.name != null and corp.name != ''">name = #{corp.name},</if>
+            <if test="corp.type != null and corp.type != ''">type = #{corp.type},</if>
+            <if test="corp.status != null and corp.status != ''">status = #{corp.status},</if>
+            <if test="corp.description != null and corp.description != ''">description = #{corp.description},</if>
+            <if test="corp.createTime != null">createTime = #{corp.createTime},</if>
+            <if test="corp.updateTime != null">updateTime = #{corp.updateTime},</if>
         </trim>
         WHERE id = #{id}
     </update>

@@ -71,6 +71,7 @@ public class OperationLogAspect {
             log.setOperationTime(Timestamp.valueOf(SDF.format(new Date())));
             int insertResult = logMapper.insertLog(log);
         } catch (Exception e) {
+            e.printStackTrace();
             Logger.getLogger(getClass().getName()).info("保存操作日志失败");
         }
 

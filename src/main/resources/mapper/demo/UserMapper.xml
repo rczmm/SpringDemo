@@ -31,11 +31,11 @@
     <select id="selectUserList" parameterType="User" resultMap="UserResult">
         <include refid="selectUserVo"/>
         <where>
-            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
-            <if test="account != null  and account != ''">and account = #{account}</if>
-            <if test="corpId != null ">and corpid = #{corpid}</if>
-            <if test="createTime != null ">and createTime = #{createTime}</if>
-            <if test="updateTime != null ">and updateTime = #{updateTime}</if>
+            <if test="user.name != null  and user.name != ''">and name like concat('%', #{user.name}, '%')</if>
+            <if test="user.account != null  and user.account != ''">and account = #{user.account}</if>
+            <if test="user.corpid != null ">and corpid = #{user.corpid}</if>
+            <if test="user.createTime != null ">and createTime = #{user.createTime}</if>
+            <if test="user.updateTime != null ">and updateTime = #{user.updateTime}</if>
         </where>
     </select>
 
@@ -48,20 +48,20 @@
         INSERT INTO
         <include refid="tableName"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">id,</if>
-            <if test="name != null">name,</if>
-            <if test="account != null">account,</if>
-            <if test="corpId != null">corpid,</if>
-            <if test="createTime != null">createTime,</if>
-            <if test="updateTime != null">updateTime,</if>
+            <if test="user.id != null">id,</if>
+            <if test="user.name != null">name,</if>
+            <if test="user.account != null">account,</if>
+            <if test="user.corpid != null">corpid,</if>
+            <if test="user.createTime != null">createTime,</if>
+            <if test="user.updateTime != null">updateTime,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">#{id},</if>
-            <if test="name != null">#{name},</if>
-            <if test="account != null">#{account},</if>
-            <if test="corpId != null">#{corpid},</if>
-            <if test="createTime != null">#{createTime},</if>
-            <if test="updateTime != null">#{updateTime},</if>
+            <if test="user.name != null">#{user.name},</if>
+            <if test="user.account != null">#{user.account},</if>
+            <if test="user.corpid != null">#{user.corpid},</if>
+            <if test="user.createTime != null">#{user.createTime},</if>
+            <if test="user.updateTime != null">#{user.updateTime},</if>
         </trim>
     </insert>
 
@@ -69,11 +69,11 @@
         UPDATE
         <include refid="tableName"/>
         <trim prefix="SET" suffixOverrides=",">
-            <if test="name != null">name = #{name},</if>
-            <if test="account != null">account = #{account},</if>
-            <if test="corpId != null">corpid = #{corpid},</if>
-            <if test="createTime != null">createTime = #{createTime},</if>
-            <if test="updateTime != null">updateTime = #{updateTime},</if>
+            <if test="user.name != null">name = #{user.name},</if>
+            <if test="user.account != null">account = #{user.account},</if>
+            <if test="user.corpid != null">corpid = #{user.corpid},</if>
+            <if test="user.createTime != null">createTime = #{user.createTime},</if>
+            <if test="user.updateTime != null">updateTime = #{user.updateTime},</if>
         </trim>
         WHERE id = #{id}
     </update>
@@ -89,7 +89,7 @@
         DELETE FROM
         <include refid="tableName"/>
         WHERE id IN
-        <foreach item="id" collection="array" open="(" separator="," close=")">
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
             #{id}
         </foreach>
     </delete>

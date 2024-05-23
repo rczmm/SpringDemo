@@ -30,24 +30,24 @@
         WHERE id=#{id}
     </select>
 
-    <insert id="insertLog" parameterType="Log">
+    <insert id="insertLog" parameterType="com.rczmm.demo.domain.Log">
         INSERT INTO
         <include refid="tableName"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="logId != null">id,</if>
-            <if test="ip != null">ip,</if>
-            <if test="type != null and type != ''">type,</if>
-            <if test="description != null and description != ''">description,</if>
-            <if test="model != null and model != ''">model,</if>
-            <if test="operationTime  != null">operation_time,</if>
+            <if test="log.logId != null">id,</if>
+            <if test="log.ip != null">ip,</if>
+            <if test="log.type != null and log.type != ''">type,</if>
+            <if test="log.description != null and log.description != ''">description,</if>
+            <if test="log.model != null and log.model != ''">model,</if>
+            <if test="log.operationTime  != null">operation_time,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="logId != null">#{logId},</if>
-            <if test="ip != null">#{ip},</if>
-            <if test="type != null and type != ''">#{type},</if>
-            <if test="description != null and description != ''">#{description},</if>
-            <if test="model != null and model != ''">#{model},</if>
-            <if test="operationTime != null">#{operationTime},</if>
+            <if test="log.logId != null">${log.logId},</if>
+            <if test="log.ip != null">#{log.ip},</if>
+            <if test="log.type != null and log.type != ''">#{log.type},</if>
+            <if test="log.description != null and log.description != ''">#{log.description},</if>
+            <if test="log.model != null and log.model != ''">#{log.model},</if>
+            <if test="log.operationTime != null">#{log.operationTime},</if>
         </trim>
     </insert>
 
