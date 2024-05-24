@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +44,8 @@ class UserServiceImplTest {
     @BeforeEach
     void setUp() {
         System.out.println("开始测试");
-        userService = new UserServiceImpl(userMapper);
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        userService = new UserServiceImpl(userMapper,redisTemplate);
     }
 
     /**

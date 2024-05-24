@@ -87,4 +87,8 @@ public class User extends BaseDO {
         return corpId;
     }
 
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", name='" + name + '\'' + ", account='" + account + '\'' + ", corpId=" + corpId + ", createTime='" + createTime + '\'' + ", updateTime='" + updateTime + '\'' + '}';
+    }
 }

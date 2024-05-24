@@ -25,7 +25,7 @@ public interface IUserService
      * @param user 用户，存储用户信息
      * @return 用户，存储用户信息集合
      */
-     List<User> selectUserList(User user, int page, int limit);
+     List<User> selectUserList(User user, Integer page, Integer limit);
 
     /**
      * 新增用户，存储用户信息

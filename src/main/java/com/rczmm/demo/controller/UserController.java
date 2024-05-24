@@ -38,7 +38,7 @@ public class UserController {
     @Operation(summary = "查询用户，存储用户信息列表", description = "查询用户，存储用户信息列表")
     @OperationLogAnnotation(operationModule = "user", operationType = "list", operationDesc = "查询用户，存储用户信息列表")
     @GetMapping("/list")
-    public List<User> list(User user, int page, int limit) {
+    public List<User> list(User user, Integer page, Integer limit) {
         return userService.selectUserList(user, page, limit);
     }
 

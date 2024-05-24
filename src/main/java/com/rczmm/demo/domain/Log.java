@@ -8,7 +8,7 @@ import java.util.Date;
  * @author rczmm
  * @date 2024/05/21 10:45
  */
-public class Log {
+public class Log extends BaseDO{
 
     /**
      * 日志id

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,9 +27,12 @@ public class UserServiceImpl implements IUserService {
 
     private final UserMapper userMapper;
 
+    private final RedisTemplate<String, Object> redisTemplate;
+
     @Autowired
-    public UserServiceImpl(UserMapper userMapper) {
+    public UserServiceImpl(UserMapper userMapper, RedisTemplate<String, Object> redisTemplate) {
         this.userMapper = userMapper;
+        this.redisTemplate = redisTemplate;
     }
 
 
@@ -38,6 +42,7 @@ public class UserServiceImpl implements IUserService {
      * @param id 用户，存储用户信息主键
      * @return 用户，存储用户信息
      */
+    @Cacheable(value = "user", key = "#id")
     @Override
     public User selectUserById(Long id) {
         return userMapper.selectUserById(id);
@@ -49,9 +54,9 @@ public class UserServiceImpl implements IUserService {
      * @param user 用户，存储用户信息
      * @return 用户，存储用户信息
      */
-    @Cacheable(value = "user", key = "'userlist:'+ #user.toString()")
+    @Cacheable(value = "user", key = "'userList:'+ #user.id")
     @Override
-    public List<User> selectUserList(User user, int page, int limit) {
+    public List<User> selectUserList(User user, Integer page, Integer limit) {
         startPage(page, limit);
         return userMapper.selectUserList(user);
     }
